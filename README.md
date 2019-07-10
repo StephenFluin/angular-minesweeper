@@ -2,7 +2,7 @@
 
 [Play the game](https://stephenfluin.github.io/angular-minesweeper/)
 
-![Game Screenshot](screenshot.png)
+[![Game Screenshot](screenshot.png)](https://stephenfluin.github.io/angular-minesweeper/)
 
 ## Development
 All custom code lives in /src/app
