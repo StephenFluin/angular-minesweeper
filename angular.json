@@ -49,7 +49,6 @@
               "extractCss": true,
               "baseHref": "/angular-minesweeper/",
               "namedChunks": true,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
