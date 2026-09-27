@@ -10,7 +10,6 @@
     "target": "ES2022",
     "module": "preserve",
     "moduleResolution": "bundler",
-    "lib": ["ES2022", "dom"],
     "useDefineForClassFields": false
   }
 }

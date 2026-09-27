@@ -1,40 +1,49 @@
 <style>
   table,
   td {
-    border: 1px solid grey;
-    border-collapse: collapse;
-  }
-  td {
-    width:32px;
-    height:32px;
-  }
+  border: 1px solid grey;
+  border-collapse: collapse;
+}
+td {
+width:32px;
+height:32px;
+}
 </style>
 
 Board:
 <table>
-  <tr *ngFor="let row of board.cells; index as y">
-    <td
-      *ngFor="let cell of row; index as x"
-      (click)="checkCell(cell)"
-      (contextmenu)="$event.preventDefault(); flag(cell)"
-    >
-      <!-- <div>Status: {{ cell.status }}</div> -->
-      <div *ngIf="cell.status === 'clear' && !cell.mine">{{ cell.proximityMines }}</div>
-      <div *ngIf="cell.status === 'flag'">
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path fill="#000000" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" />
-        </svg>
-      </div>
-      <div *ngIf="cell.mine && cell.status === 'clear'">
-        <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-          <path
-            fill="#000000"
-            d="M23,13V11H19.93C19.75,9.58 19.19,8.23 18.31,7.1L20.5,4.93L19.07,3.5L16.9,5.69C15.77,4.81 14.42,4.25 13,4.07V1H11V4.07C9.58,4.25 8.23,4.81 7.1,5.69L4.93,3.5L3.5,4.93L5.69,7.1C4.81,8.23 4.25,9.58 4.07,11H1V13H4.07C4.25,14.42 4.81,15.77 5.69,16.9L3.5,19.07L4.93,20.5L7.1,18.31C8.23,19.19 9.58,19.75 11,19.93V23H13V19.93C14.42,19.75 15.77,19.19 16.9,18.31L19.07,20.5L20.5,19.07L18.31,16.9C19.19,15.77 19.75,14.42 19.93,13H23M12,8A4,4 0 0,0 8,12H6A6,6 0 0,1 12,6V8Z"
-          />
-        </svg>
-      </div>
-    </td>
-  </tr>
+  @for (row of board.cells; track row; let y = $index) {
+    <tr>
+      @for (cell of row; track cell; let x = $index) {
+        <td
+          (click)="checkCell(cell)"
+          (contextmenu)="$event.preventDefault(); flag(cell)"
+          >
+          <!-- <div>Status: {{ cell.status }}</div> -->
+          @if (cell.status === 'clear' && !cell.mine) {
+            <div>{{ cell.proximityMines }}</div>
+          }
+          @if (cell.status === 'flag') {
+            <div>
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path fill="#000000" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" />
+              </svg>
+            </div>
+          }
+          @if (cell.mine && cell.status === 'clear') {
+            <div>
+              <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                <path
+                  fill="#000000"
+                  d="M23,13V11H19.93C19.75,9.58 19.19,8.23 18.31,7.1L20.5,4.93L19.07,3.5L16.9,5.69C15.77,4.81 14.42,4.25 13,4.07V1H11V4.07C9.58,4.25 8.23,4.81 7.1,5.69L4.93,3.5L3.5,4.93L5.69,7.1C4.81,8.23 4.25,9.58 4.07,11H1V13H4.07C4.25,14.42 4.81,15.77 5.69,16.9L3.5,19.07L4.93,20.5L7.1,18.31C8.23,19.19 9.58,19.75 11,19.93V23H13V19.93C14.42,19.75 15.77,19.19 16.9,18.31L19.07,20.5L20.5,19.07L18.31,16.9C19.19,15.77 19.75,14.42 19.93,13H23M12,8A4,4 0 0,0 8,12H6A6,6 0 0,1 12,6V8Z"
+                  />
+              </svg>
+            </div>
+          }
+        </td>
+      }
+    </tr>
+  }
 </table>
 
 <button (click)="reset()">Restart</button>
