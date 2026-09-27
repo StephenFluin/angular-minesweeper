@@ -9,10 +9,7 @@ import { Cell } from './game/cell';
 })
 export class AppComponent {
   title = 'minesweeper';
-  board: Board;
-  constructor() {
-    this.reset();
-  }
+  board: Board = this.reset();
 
   checkCell(cell: Cell) {
     const result = this.board.checkCell(cell);
@@ -32,5 +29,6 @@ export class AppComponent {
 
   reset() {
     this.board = new Board(20, 50);
+    return this.board;
   }
 }
