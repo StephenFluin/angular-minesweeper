@@ -20,35 +20,26 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "browser": "src/main.ts",
             "outputPath": {
               "base": "dist/"
             },
             "index": "src/index.html",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
             ],
             "styles": [
               "src/styles.scss"
-            ],
-            "scripts": [],
-            "extractLicenses": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
-            "browser": "src/main.ts"
+            ]
           },
           "configurations": {
             "production": {
-              "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
               "baseHref": "/angular-minesweeper/",
-              "extractLicenses": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -60,26 +51,27 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
-          "options": {
-            "buildTarget": "minesweeper:build"
-          },
           "configurations": {
             "production": {
               "buildTarget": "minesweeper:build:production"
+            },
+            "development": {
+              "buildTarget": "minesweeper:build:development"
             }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n",
-          "options": {
-            "buildTarget": "minesweeper:build"
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",

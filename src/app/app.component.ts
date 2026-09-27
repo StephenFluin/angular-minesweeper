@@ -4,11 +4,9 @@ import { Cell } from './game/cell';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: false
+    styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'minesweeper';
   board: Board = this.reset();
 
   checkCell(cell: Cell) {

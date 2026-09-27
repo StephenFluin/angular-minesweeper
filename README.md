@@ -8,5 +8,5 @@
 All custom code lives in /src/app
 
 * `ng serve` to do live development reload
-* `ng build --prod` to build
-* [`ngh`](https://www.npmjs.com/package/angular-cli-ghpages) to deploy to GitHub pages
+* `ng build`
+* `ng deploy` ([angular-cli-ghpages](https://www.npmjs.com/package/angular-cli-ghpages)) to deploy to GitHub pages

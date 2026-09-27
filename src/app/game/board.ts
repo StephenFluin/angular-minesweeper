@@ -53,7 +53,7 @@ export class Board {
 
   checkCell(cell: Cell): 'gameover' | 'win' | null {
     if (cell.status !== 'open') {
-      return;
+      return null;
     } else if (cell.mine) {
       this.revealAll();
       return 'gameover';
@@ -76,7 +76,7 @@ export class Board {
       if (this.remainingCells-- <= 1) {
         return 'win';
       }
-      return;
+      return null;
     }
   }
   revealAll() {
