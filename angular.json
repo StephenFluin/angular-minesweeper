@@ -75,7 +75,10 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "options": {
+            "buildTarget": "minesweeper:build:production",
+            "message": "chore: deploy to GitHub Pages"
+          }
         }
       }
     }
