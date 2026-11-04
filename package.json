@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@angular/build": "^22.2.0",
-    "@angular/cli": "^22.2.0",
+    "@angular/cli": "^22.2.5",
     "@angular/compiler-cli": "^22.2.0",
     "@angular/language-service": "^22.2.0",
     "angular-cli-ghpages": "^3.1.0",
