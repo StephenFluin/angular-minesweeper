@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Board } from './game/board';
 import { Cell } from './game/cell';
 @Component({
@@ -7,10 +7,10 @@ import { Cell } from './game/cell';
     styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  board: Board = this.reset();
+  board = signal(new Board(20, 50));
 
   checkCell(cell: Cell) {
-    const result = this.board.checkCell(cell);
+    const result = this.board().checkCell(cell);
     if (result === 'gameover') {
       alert('You lose');
     } else if (result === 'win') {
@@ -18,15 +18,10 @@ export class AppComponent {
     }
   }
   flag(cell: Cell) {
-    if (cell.status === 'flag') {
-      cell.status = 'open';
-    } else {
-      cell.status = 'flag';
-    }
+    cell.status.update((status) => (status === 'flag' ? 'open' : 'flag'));
   }
 
   reset() {
-    this.board = new Board(20, 50);
-    return this.board;
+    this.board.set(new Board(20, 50));
   }
 }

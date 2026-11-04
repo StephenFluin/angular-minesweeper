@@ -1,5 +1,7 @@
+import { signal } from '@angular/core';
+
 export class Cell {
-  status: 'open' | 'clear' | 'flag' = 'open';
+  status = signal<'open' | 'clear' | 'flag'>('open');
   mine = false;
   proximityMines = 0;
 

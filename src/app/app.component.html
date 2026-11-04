@@ -1,6 +1,6 @@
 Board:
 <table>
-  @for (row of board.cells; track row; let y = $index) {
+  @for (row of board().cells; track row; let y = $index) {
     <tr>
       @for (cell of row; track cell; let x = $index) {
         <td
@@ -8,17 +8,17 @@ Board:
           (contextmenu)="$event.preventDefault(); flag(cell)"
           >
           <!-- <div>Status: {{ cell.status }}</div> -->
-          @if (cell.status === 'clear' && !cell.mine) {
+          @if (cell.status() === 'clear' && !cell.mine) {
             <div>{{ cell.proximityMines }}</div>
           }
-          @if (cell.status === 'flag') {
+          @if (cell.status() === 'flag') {
             <div>
               <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path fill="#000000" d="M14.4,6L14,4H5V21H7V14H12.6L13,16H20V6H14.4Z" />
               </svg>
             </div>
           }
-          @if (cell.mine && cell.status === 'clear') {
+          @if (cell.mine && cell.status() === 'clear') {
             <div>
               <svg style="width:24px;height:24px" viewBox="0 0 24 24">
                 <path

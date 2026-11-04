@@ -52,13 +52,13 @@ export class Board {
   }
 
   checkCell(cell: Cell): 'gameover' | 'win' | null {
-    if (cell.status !== 'open') {
+    if (cell.status() !== 'open') {
       return null;
     } else if (cell.mine) {
       this.revealAll();
       return 'gameover';
     } else {
-      cell.status = 'clear';
+      cell.status.set('clear');
 
       // Empty cell, let's clear the whole block.
       if(cell.proximityMines === 0) {
@@ -82,8 +82,8 @@ export class Board {
   revealAll() {
     for (const row of this.cells) {
       for (const cell of row) {
-        if (cell.status === 'open') {
-          cell.status = 'clear';
+        if (cell.status() === 'open') {
+          cell.status.set('clear');
         }
       }
     }
