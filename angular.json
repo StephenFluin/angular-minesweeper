@@ -79,6 +79,13 @@
             "buildTarget": "minesweeper:build:production",
             "message": "chore: deploy to GitHub Pages"
           }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "tsconfig.spec.json",
+            "buildTarget": "::development"
+          }
         }
       }
     }
